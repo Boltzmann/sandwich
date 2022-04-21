@@ -18,22 +18,24 @@ type Sandwich = {
 
 function App() {
 
-  const [name, setName] = useState('');
-  const [bread, setBread] = useState('');
-  const [meat, setMeat] = useState('');
-  const [salad1, setSalad1] = useState('');
-  const [salad2, setSalad2] = useState('');
-  const [salad3, setSalad3] = useState('');
-  const [sauce, setSauce] = useState('');
-  const [cheese, setCheese] = useState('');
-  const [extra, setExtra] = useState('');
-  const [beverage, setBeverage] = useState('');
-  const [toasted, setToasted] = useState('');
+  const [name, setName] = useState('default');
+  const [bread, setBread] = useState('white bread');
+  const [meat, setMeat] = useState('pork belly');
+  const [salad1, setSalad1] = useState('salad');
+  const [salad2, setSalad2] = useState('salad');
+  const [salad3, setSalad3] = useState('salad');
+  const [sauce, setSauce] = useState('spicy mayo');
+  const [cheese, setCheese] = useState('gouda');
+  const [extra, setExtra] = useState('extra sauce');
+  const [beverage, setBeverage] = useState('sparkling water');
+  const [toasted, setToasted] = useState('NO!');
   const [wishes, setWishes] = useState('');
 
     const handleSubmit = (event:any) => {
+        event.preventDefault()
         alert('A name was submitted: ' + name);
-        console.log([name, bread, meat, salad1, salad2, salad3, sauce, cheese, extra, beverage, toasted, wishes])
+        const sandwich:Sandwich = {name, bread, meat, salad1, salad2, salad3, sauce, cheese, extra, beverage, toasted, wishes}
+        console.log(sandwich)
         event.preventDefault();
     };
 
@@ -52,7 +54,7 @@ function App() {
         <input type={"text"} required value={name} onChange={handleChange } />
         <label>bread</label>
         <select required value={bread} onChange={(e) => setBread(e.target.value) }>
-          <option defaultValue={"white bread"}>white bread </option>
+          <option value={"white bread"} > white bread </option>
           <option value={"whole bread"} > whole bread</option>
           <option value={"bread bread"} >bread bread </option>
           <option value={"thin bread"} >thin bread </option>
@@ -61,7 +63,7 @@ function App() {
         </select>
         <label>meat</label>
         <select required value={meat} onChange={(e) => setMeat(e.target.value)}>
-          <option  defaultValue={"pork belly"}>pork belly </option>
+          <option  value={"pork belly"}>pork belly </option>
           <option value={"chicken breast"} > chicken breast</option>
           <option value={"holy meat"} >holy meat </option>
           <option value={"thin meat"} >thin meat </option>
@@ -70,7 +72,7 @@ function App() {
         </select>
         <label>veggies</label>
         <select required value={salad1} onChange={(e) => setSalad1(e.target.value)}>
-          <option  defaultValue={"salad"}>salad </option>
+          <option  value={"salad"}>salad </option>
           <option value={"paprika"} > paprika</option>
           <option value={"cucumber"} >cucumber </option>
           <option value={"corn"} >corn </option>
@@ -135,6 +137,7 @@ function App() {
         </select>
         <label>Any extra wishes? Let us know!</label>
         <textarea value={wishes} onChange={(e) => setWishes(e.target.value)}> </textarea>
+
               <input type="submit" value="Submit" />
           </form>
       </div>
